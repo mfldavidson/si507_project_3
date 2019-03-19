@@ -1,0 +1,12 @@
+<ul>
+{% for sg in all_songs %}
+<li>{{ sg[0] }} by {{ sg[1] }} - {{ sg[2] }}</li><br>
+{% endfor %}
+</ul>
+
+{% if not all_songs %}
+There are no saved favorite songs to show.
+{% endif %}
+
+
+<a href="{{ url_for('index')}}">Return to home page</a>
