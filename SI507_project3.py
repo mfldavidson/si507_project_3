@@ -24,7 +24,7 @@ def new_movie(title,rating,directorfname,directorlname,distributor):
             movie = Movie(title=title, rating=rating.id,director=director.id,distributor=distributor.id)
             session.add(movie)
             session.commit()
-            return "New movie: {}".format(movie)
+            return render_template('new_movie.html',mov=movie)
 
 @app.route('/all_movies')
 def see_all():
