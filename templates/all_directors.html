@@ -1,0 +1,12 @@
+<ul>
+{% for director in directors %}
+<li>{{ director }}</li><br>
+{% endfor %}
+</ul>
+
+{% if not directors %}
+There are no directors in the database.
+{% endif %}
+
+
+<a href="{{ url_for('index')}}">Go to homepage</a>
