@@ -4,16 +4,16 @@
       There are {{num_movies}} movies in the database right now.
     </h1>
 
-{% for mov in movies %}
-<li>{{ mov }}</li><br>
-{% endfor %}
-
 {% if not movies %}
 There are no movies.
 {% endif %}
 
 
-<h3><a href="{{ url_for('see_all')}}">See a list of all movies</a><br>
-OR<br>
-Create a new movie by navigating to /movie/new/[the title you want for your movie]/[mpaa rating]/[director first name]/[director last name]/[distributor]</h3>
+<h3>
+  <a href="{{ url_for('see_all')}}">See a list of all movies</a><br>
+  OR<br>
+  <a href="{{ url_for('see_all_directors')}}">See a list of all directors</a><br>
+  OR<br>
+  Create a new movie by navigating to /movie/new/[the title you want for your movie]/[mpaa rating]/[director first name]/[director last name]/[distributor]
+</h3>
 </div>

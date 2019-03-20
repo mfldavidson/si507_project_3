@@ -28,13 +28,8 @@ def new_movie(title,rating,directorfname,directorlname,distributor):
 
 @app.route('/all_movies')
 def see_all():
-    all_movies = []
     movies = Movie.query.all()
-    for mov in movies:
-        director = Director.query.filter_by(id=mov.director).first()
-        rating = Rating.query.filter_by(id=mov.rating).first()
-        all_movies.append((mov.title,' '.join([str(Director.fname),str(Director.lname)]),Rating.text))
-    return render_template('all_movies.html',all_movies=all_movies)
+    return render_template('all_movies.html',movies=movies)
 
 @app.route('/all_directors')
 def see_all_directors():
