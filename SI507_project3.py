@@ -35,16 +35,11 @@ def see_all():
         rating = Rating.query.filter_by(id=mov.rating).first()
         all_movies.append((mov.title,' '.join([str(Director.fname),str(Director.lname)]),Rating.text))
     return render_template('all_movies.html',all_movies=all_movies)
-#
-# @app.route('/all_artists')
-# def see_all_artists():
-#     artists = Artist.query.all()
-#     names = []
-#     for a in artists:
-#         num_songs = len(Song.query.filter_by(artist_id=a.id).all())
-#         newtup = (a.name,num_songs)
-#         names.append(newtup) # names will be a list of tuples
-#     return render_template('all_artists.html',artist_names=names)
+
+@app.route('/all_directors')
+def see_all_directors():
+    directors = Director.query.all()
+    return render_template('all_directors.html',directors=directors)
 
 
 if __name__ == '__main__':
@@ -54,7 +49,7 @@ if __name__ == '__main__':
         if rating_exists:
             continue
         else:
-            new_rating = get_or_create_rating(rating_text=rating[1],rating_num=rating[0])
+            new_rating = Rating(text=rating[1],num=rating[0])
             session.add(new_rating)
     session.commit()
-    app.run() # run with this: python main_app.py runserver
+    app.run()

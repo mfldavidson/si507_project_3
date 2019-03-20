@@ -11,8 +11,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./movies.db'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app) # For database use
-session = db.session # to make queries easy
+db = SQLAlchemy(app)
+session = db.session
 
 # models
 class Movie(db.Model):
@@ -55,7 +55,7 @@ class Director(db.Model):
     movies = db.relationship('Movie',backref='Director')
 
     def __repr__(self):
-        return "{} {}".format(self.fname,self.lname)
+        return "Director {} {} with {} movies".format(self.fname,self.lname,len(self.movies))
 
 # functions to get or create new values
 def get_rating(rating_text,rating_num=None):
