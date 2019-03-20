@@ -1,0 +1,17 @@
+
+<div class="page-header">
+
+{% if not rating_is_valid %}
+This is not a valid MPAA rating. Please reload the page and enter one of the following: G, PG, PG-13, R, or NC-17
+{% else %}
+{% if not movies %}
+There are no movies with this rating.
+{% else %}
+{% for mov in movies %}
+<li>{{ mov }}</li><br>
+{% endfor %}
+{% endif %}
+{% endif %}
+
+</div>
+<a href="{{ url_for('index')}}">Go to homepage</a>

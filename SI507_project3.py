@@ -36,6 +36,20 @@ def see_all_directors():
     directors = Director.query.all()
     return render_template('all_directors.html',directors=directors)
 
+@app.route('/movies_by_rating')
+def see_movies_by_rating():
+    rating_from_user = input('Enter a rating (text value) to show all movies with that rating. Valid ratings: G, PG, PG-13, R, or NC-17')
+    ratings = Rating.query.all()
+    rating_is_valid = False
+    for rating in ratings:
+        if rating.text == rating_from_user:
+            movies = rating.movies
+            rating_is_valid = True
+            break
+    if rating_is_valid == False:
+        movies = None
+    return render_template('ratings.html',rating_is_valid=rating_is_valid,movies=movies)
+
 
 if __name__ == '__main__':
     db.create_all()
